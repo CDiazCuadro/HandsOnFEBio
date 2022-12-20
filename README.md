@@ -28,9 +28,12 @@ By default if we want to use contact we have to define the contact model or inte
 ### Contact Basics:
 
 **Primary and secondary surfaces**
-- We have two contacting surfaces denoted: primary and secondary. The primary surface is the one where most of the contact calculations are done, (all the integration points of the second that are in the primary, are taken into account to compute the contact force ). The general recommendation is to pick the finner  non- rigid surface as primary. The nodes of the primary surface are projected into the secondary (that is the contact gap g). 
+- We have two contacting surfaces denoted: primary and secondary. The primary surface is the one where most of the contact calculations are done, (all the integration points of the second that are in the primary, are taken into account to compute the contact force ). The general recommendation is to pick the finner  non- rigid surface as primary. The nodes of the primary surface are projected into the secondary (that is the contact gap g).
 
-** Relevant parameters**
+![image](https://user-images.githubusercontent.com/50339940/208787635-6ea89b2b-8a49-4750-940e-769d4ccfd4c2.png)
+
+**Relevant parameters**
 - Projection tolerance: is a tolerance in a parametric space that defines when a projection is inside the facet. It gives an area surrounding the face that if a point is outside that faces (but inside the tolerance) that point is still considered inside of the same facet. This avoids convergence issues due to flip-flop of the elements. By default 1% and it turns out that in most cases this is not needed to be changed. 
 -  Search Radius: Maximum distance to secondary surface. Face sets  outside the search radius are not eligible for contact. 
 
+![image](https://user-images.githubusercontent.com/50339940/208787804-8771091f-27d5-4b44-8f1f-029216d19797.png)
