@@ -74,7 +74,7 @@ Sliding contact prevents points from pentrating the secondary surface, but separ
 
 - $$f_c = 0 ~~ if ~~ g> 0$$
 
-- $$f_c =  \epsilon g n if g> 0$$
+- $$f_c =  \epsilon g \bf{n} ~~ if ~~ g< 0$$
 
 Friction is supported ina sub-set of contact interfaces: sliding-elastic, sliding-node-on-facet ( Couloumb law with the same static and dynamic friction coefficients.). According on the prvious flavors we can use:
 
