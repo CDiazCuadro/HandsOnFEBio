@@ -31,7 +31,7 @@ Contact is a nonlinear constraint and is enforced through Lagrange multipliers (
 
 **The penalty method**: A contact force si added like a spring with with a penalty factor $\epsilon$ when both surfaces split that spring will kind of pull these points back together. If  $g$ is negative or zero the force is zero. Mathematically: $f_c = \epsilon g$, therefore if we use penalty a gap $g$ is needed, if not we have no contact. To overcome this, the Augmented Lagranigan Method is uesd. 
 
-**The Augmented Lagrangian Method**: The contact force is changed adding a LM to the force $ f_c^k = \lambda_c^k \epsilon g $, and the LM is constant during the Newton Iteration. After Newton iterations converge, LM are updated. Then the step is re-solved updating  $\lambda_c^{k+1} = \lambda_c^k \epsilon g$ and the norm is checked below a user specified tolerance. 
+- The Augmented Lagrangian Method**: The contact force is changed adding a LM to the force $f_c^k = \lambda _c^k \epsilon g$, and the LM is constant during the Newton Iteration. After Newton iterations converge, LM are updated. Then the step is re-solved updating  $\lambda_c^{k+1} = \lambda_c^k \epsilon g$ and the norm is checked below a user specified tolerance. 
 
 
 **Primary and secondary surfaces**
