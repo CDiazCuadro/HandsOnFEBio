@@ -72,8 +72,8 @@ We have three different flavors of tied contact regarding the projection operati
 ## Sliding contact
 Sliding contact prevents points from pentrating the secondary surface, but separation is still allowed. Contact gap $g$ now is a signed scalar quantity. Contact only if $g<0$. The contact force is:
 
-$$ f_c = 0 ~~if~~ g~~ > 0 $$
-$$f_c =  \epsilon g \bf{n} ~~if~~ g~~ > 0$$
+$$f_c = 0 ~~if~~ g~~ > 0$$
+$$f_c =  \epsilon g n ~~if~~ g~~ > 0$$
 
 Friction is supported ina sub-set of contact interfaces: sliding-elastic, sliding-node-on-facet ( Couloumb law with the same static and dynamic friction coefficients.). According on the prvious flavors we can use:
 
