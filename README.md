@@ -27,8 +27,15 @@ By default if we want to use contact we have to define the contact model or inte
 
 ### Contact Basics:
 
+Contact is a nonlinear constraint and is enforced through Lagrange multipliers (LM). But this can be expensive in terms of computational cost, so it used approximations methods such as:
+
+- The penalty method: A contact force si added like a spring with with a penalty factor $\epsilon$ when both surfaces split that spring will kind of pull these points back together. If  $g$ is negative or zero the force is zero. Mathematically: $ f_c = \epsilon g $, therefore if we use penalty a gap $g$ is needed, if not we have no contact. To overcome this, the Augmented Lagranigan Method is uesd. 
+
+- The Augmented Lagrangian Method: The contact force is changed adding a LM to the force $ f_c^k = \lambda_c^k \epsilon g $, and the LM is constant during the Newton Iteration. After Newton iterations converge, LM are updated. Then the step is re-solved updating  $\lambda_c^{k+1} = \lambda_c^k \epsilon g$ and the norm is checked below a user specified tolerance. 
+
+
 **Primary and secondary surfaces**
-- We have two contacting surfaces denoted: primary and secondary. The primary surface is the one where most of the contact calculations are done, (all the integration points of the second that are in the primary, are taken into account to compute the contact force ). The general recommendation is to pick the finner  non- rigid surface as primary. The nodes of the primary surface are projected into the secondary (that is the contact gap g).
+- We have two contacting surfaces denoted: primary and secondary. The primary surface is the one where most of the contact calculations are done, (all the integration points of the second that are in the primary, are taken into account to compute the contact force). The general recommendation is to pick the finer  non-rigid surface as the  primary, specially if we are using the auto penalty feature. The nodes of the primary surface are projected into the secondary (that is the contact gap g).
 
 ![image](https://user-images.githubusercontent.com/50339940/208787635-6ea89b2b-8a49-4750-940e-769d4ccfd4c2.png)
 
@@ -37,3 +44,46 @@ By default if we want to use contact we have to define the contact model or inte
 -  Search Radius: Maximum distance to secondary surface. Face sets  outside the search radius are not eligible for contact. 
 
 ![image](https://user-images.githubusercontent.com/50339940/208787804-8771091f-27d5-4b44-8f1f-029216d19797.png)
+
+### Tied contact 
+
+We have three different flavors of tied contact regarding the projection operation implemented. 
+![image](https://user-images.githubusercontent.com/50339940/208970420-52d20f6e-96c3-4506-8cbd-c3e55aed93e6.png)
+
+- **Tied node-on-facet (TN2F)** : Projects the primary surface nodes into the secondary. The projection is done computing the closest point. 
+    - Nodal, closest point projections
+    - Symetric formulation
+- **Tied facet-on-facet (TF2F)**: Projects the integration points of the primary surface into the secondary. The projection is done computing the closest point. This forumalations gives us a more accurate sampling of the contact surface.
+    - Integration point, closest point projections
+    - Symetric formulation
+
+- **Tied-elastic (TE)** Projects the integration points of the primary surface into the secondary. The projection is done computing the normal projection. This formulation gives us a more stable formulation. We avoid to have more than one closest point, the normal projection is unique. 
+    - Integration point, closest point projections
+    - Non-Symetric formulation (but we have an option to make the stiffness matrix symetric)
+
+- **Parameters**
+    -![image](https://user-images.githubusercontent.com/50339940/208972615-34416c75-8dc3-4bbf-9039-ff0754fadc3f.png)
+
+    - If we have a gap between both surfaces we can increase the penalty factor. Turning the auto-penalty parameter on we can combat the gap. Remember that the penalty factor $\lambda$ has units.  
+
+    - Because ALM depends on a contact gap, there will be always a small gap between two surfaces. We can solve this problem by adding more augmentations and also increasing the penalty factor (take into account that big numbers of penalty might lead to instabilities). We have an option also ino the TN2F we have a truth lagrange multiplier formulation when we dont need to specify a penalty factor. 
+
+
+## Sliding contact
+Sliding contact prevents points from pentrating the secondary surface, but separation is still allowed. Contact gap $g$ now is a signed scalar quantity. Contact only if $g<0$. The contact force is:
+
+$$ f_c = 0 ~~if~~ g~~ > 0 \\
+f_c =  \epsilon g \bf{n}$$
+
+Friction is supported ina sub-set of contact interfaces: sliding-elastic, sliding-node-on-facet ( Couloumb law with the same static and dynamic friction coefficients.). According on the prvious flavors we can use:
+
+- **Sliced node-on-facet (TN2F)** 
+- **Sliced facet-on-facet (TF2F)**
+- **Sliced-elastic (TE)** 
+
+
+- **Parameters**
+    -![image](https://user-images.githubusercontent.com/50339940/208977831-1ae4665a-366b-494d-98c1-f32101902d81.png)
+    - **seg_up** During de Newton Iteration a point can be projected into different facests of the secondary surface while the mesh is being updated. This flip flop can be problematic since is afecting the residual and it cannot converge, since the residual force is being changed. 
+    - **two_pass** we can have a small bias if we switch the primary and the secondary surface, so this parameter switches auto primary and secondary. 
+    - Also another tip to inspect the contact results we a 
