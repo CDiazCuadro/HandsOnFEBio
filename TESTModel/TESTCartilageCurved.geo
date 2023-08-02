@@ -28,7 +28,7 @@ BSpline(4) = {2, 20, 200};
 // Surfaces:
 Curve Loop(1) = {1,4, -2, -3};
 Plane Surface(1) = {1};
-2
+
 //+
 //Extrude {{0, 0, -1}, {0, 0, 0}, Pi} {
 //  Surface{1}; 
@@ -45,5 +45,9 @@ Extrude {{0, 0, -1}, {0, 0, 0}, Pi/2} {
 }
 Transfinite Curve {3,4,8,-10} = Ref Using Progression 1;
 Transfinite Curve {16,12} = Ref Using Progression 1;
-Transfinite Curve {7,9} = Ref Using Progression 1;
-Transfinite Curve {1} = 3 Using Progression 1;
+Transfinite Curve {7} = Ref Using Progression 1;
+Transfinite Curve {2,9} = 3 Using Progression 1;
+Transfinite Curve {1} = 4 Using Progression 1;
+Transfinite Curve {17, 13} = Ref Using Progression 1;
+//+
+
