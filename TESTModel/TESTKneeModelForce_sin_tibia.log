@@ -104,12 +104,9 @@ Setting parameter "RigidConstraint3.value" to : -0
 			displacement         (type = vec3f, format = NODE)
 		Domain Variables:
 			nodal stress         (type = mat3fs, format = COMP)
-			relative volume      (type = float, format = ITEM)
-			rigid force          (type = vec3f, format = REGION)
 			stress               (type = mat3fs, format = ITEM)
-		Surface Variables:
-			surface area         (type = float, format = REGION)
-			facet area           (type = float, format = ITEM)
+			PK1 stress           (type = mat3f, format = ITEM)
+			PK2 stress           (type = mat3fs, format = ITEM)
 
 
  MATERIAL DATA
@@ -5896,7 +5893,7 @@ Reforming stiffness matrix: reformation #1
 	stiffness matrix reformations = 1
 	step from line search         = 1.000000
 	convergence norms :     INITIAL         CURRENT         REQUIRED
-	   residual            5.467013e+04    1.636298e-07    0.000000e+00 
+	   residual            5.467013e+04    1.636299e-07    0.000000e+00 
 	   energy              1.045576e-02    2.534396e-11    1.045576e-04 
 	   displacement        5.791676e-06    6.595733e-13    1.961575e-10 
 
@@ -5945,32 +5942,32 @@ convergence summary
 
 	Total number of stiffness reformations ............ : 47
 
-	Time in linear solver: 0:00:08
+	Time in linear solver: 0:00:02
 
 
- Elapsed time : 0:00:17
+ Elapsed time : 0:00:16
 
  T I M I N G   I N F O R M A T I O N
 
 	Input time ...................... : 0:00:00 (0 sec)
 
-	Initialization time ............. : 0:00:00 (0 sec)
+	Initialization time ............. : 0:00:01 (1 sec)
 
-	Solve time ...................... : 0:00:17 (17 sec)
+	Solve time ...................... : 0:00:16 (16 sec)
 
 	   IO-time (plot, dmp, data) .... : 0:00:00 (0 sec)
 
-	   reforming stiffness .......... : 0:00:00 (0 sec)
+	   reforming stiffness .......... : 0:00:02 (2 sec)
 
 	   evaluating stiffness ......... : 0:00:00 (0 sec)
 
-	   evaluating residual .......... : 0:00:04 (4 sec)
+	   evaluating residual .......... : 0:00:09 (9 sec)
 
-	   model update ................. : 0:00:04 (4 sec)
+	   model update ................. : 0:00:02 (2 sec)
 
 	   QN updates ................... : 0:00:00 (0 sec)
 
-	   time in linear solver ........ : 0:00:08 (8 sec)
+	   time in linear solver ........ : 0:00:02 (2 sec)
 
 	Total elapsed time .............. : 0:00:17 (17 sec)
 

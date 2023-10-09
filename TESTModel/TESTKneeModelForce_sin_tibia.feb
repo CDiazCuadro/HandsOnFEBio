@@ -31036,11 +31036,9 @@
 		<plotfile type="febio">
 			<var type="displacement"/>
 			<var type="nodal stress"/>
-			<var type="relative volume"/>
-			<var type="rigid force"/>
 			<var type="stress"/>
-			<var type="surface area"/>
-			<var type="facet area"/>
+			<var type="PK1 stress"/>
+			<var type="PK2 stress"/>
 		</plotfile>
 	</Output>
 </febio_spec>
